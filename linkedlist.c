@@ -22,16 +22,16 @@ linkedlist *create() { // promising a return of 'linkedlist' and create doesn't 
     list -> head = NULL; // this just says that the head of the linked list doesn't exist yet since there is no data yet and thus no first Node
     return list; // since there is no data, once the linkedlist pointer is created the function can return the linkedlist
 }
-void push_front(linkedlist *list, int value) {
-    Node *node = (Node *)malloc(sizeof(Node));
-    if (node == NULL) {
+void push_front(linkedlist *list, int value) { //linkedlist * list, is in teh paramater as teh function needs to access the list and create 'list' as a variable
+    Node *node = (Node *)malloc(sizeof(Node)); // defines node as the Node pointer and allocates memory in the size of a Node as defined earlier
+    if (node == NULL) { // checks if the memory allocation succeeded
         printf("memory allocation failed");
-        return;
+        return; // nothing is returned as this is a void function
     }
-    node->data = value;
-    node->next = list->head;
-    list->head = node;
-    return;
+    node->data = value; // sets the data in 'node' to the value specified
+    node->next = list->head; // sets the the 'next' pointer in 'node to the current list head pointer since this function pushes data to the front of the list
+    list->head = node; // sets the new list head pointer as to the pointer of the new Node
+    return; // nothing is returned as this is a void function
 }
         
 push_back()

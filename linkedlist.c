@@ -19,7 +19,7 @@ linkedlist *create() { // promising a return of 'linkedlist' and create doesn't 
         printf("linkedlist creation failed"); // prints in case of failure
         return NULL; // NUll return when successful
     }
-    list -> head = NULL; // this just says that the head of the linked list doesn't exist yet since there is no data yet and thus no first Node
+    list->head = NULL; // this just says that the head of the linked list doesn't exist yet since there is no data yet and thus no first Node
     return list; // since there is no data, once the linkedlist pointer is created the function can return the linkedlist
 }
 void push_front(linkedlist *list, int value) { //linkedlist * list, is in teh paramater as teh function needs to access the list and create 'list' as a variable
@@ -33,9 +33,45 @@ void push_front(linkedlist *list, int value) { //linkedlist * list, is in teh pa
     list->head = node; // sets the new list head pointer as to the pointer of the new Node
     return; // nothing is returned as this is a void function
 }
-        
-push_back()
-delete_node()
-get()
-print()
-free_list()
+
+void push_back(linkedlist *list, int value) { // function to push data to the back of the list
+    Node *node = (Node *)malloc(sizeof(Node)); // allocting memory for the Node struct
+    if (node == NULL) { // check if memory was allocated successfully
+        printf("memory allocation failed");
+        return; // no return value as this is a void function
+    }
+    if (list->head == NULL) { // checking if the list is empty when pushing this function, so that no error occurs during the loop later
+        list->head = node; // if the list is empty, then we assign list->head to the new node, which would be the first
+        return;
+    }
+    Node *current = list->head; // need to declare the new pointer name to be used in the subsequent loop. current is the new pointer in this case and start by pointing at list->head
+    while (current->next != NULL) { // loop that keeps running as long as current->next doesn't equal NULL
+        current = current->next; // says that the pointer to current gets reassign to current->next (thus pointing at the next node)
+    } // no return is included here as it it were then the loop would terminate after one round instead of when current->next == NULL
+    current->next = node; // now that the loop as walked current to the end of the list, we are assiging current->next (so the previously last node) to point at the newly created node
+    node->next = NULL; // setting the newly created node's node->next to NULL
+    node->data = value; // inputing the data into the node
+    return;
+    }
+
+void delete_node(linkedlist *list, int position) {
+    if (list->head == NULL) {
+        return;
+    }
+    Node *current = list->head; // declaring current nod pointer as a variable
+    if (position == 0) { // looking at when we want to delete the first node
+        list->head = current->next; // reassinging list->head as the pointer of the next node after the delection node
+        free(current); // free the node memory
+        return;
+    }
+    int count = 0; // declaring count here befoe the loop
+    while (count < position -1) { // condition continues as long as the statement is true, so it stops the first time its false, unliek in math when you would put the correct number from one postion before
+
+    }
+}
+// get()
+// print()
+// free_list()
+int main() {
+    return 0;
+}

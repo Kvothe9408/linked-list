@@ -5,7 +5,7 @@
 // My defitions
 typedef struct Node Node; // declares that "struct Node" as "Node" will be defined
 typedef struct Node{ // Defining "gitNode" as a struct
-    int data; //a pointer pointing to the data in this node
+    int data; //integer field
     struct Node *next; // a pointer pointing to the next node head. using struct node as that is the general form and Node isn't defined yet at this stage
 } Node; // name of struct
 typedef struct{
@@ -17,14 +17,14 @@ linkedlist *create() { // promising a return of 'linkedlist' and create doesn't 
     linkedlist *list = (linkedlist*)malloc(sizeof(linkedlist)); // linkedlist pointer variable 'list' assigned a memory allocation of the size of linkedlist, so in this case the pointer to the node head
     if (list == NULL) { // checking if the memory allocation for the linkedlist (list) succeeded
         printf("linkedlist creation failed"); // prints in case of failure
-        return NULL; // NUll return when successful
+        return NULL; // NUll return when failure
     }
     list->head = NULL; // this just says that the head of the linked list doesn't exist yet since there is no data yet and thus no first Node
     return list; // since there is no data, once the linkedlist pointer is created the function can return the linkedlist
 }
 void push_front(linkedlist *list, int value) { //linkedlist * list, is in teh paramater as teh function needs to access the list and create 'list' as a variable
     Node *node = (Node *)malloc(sizeof(Node)); // defines node as the Node pointer and allocates memory in the size of a Node as defined earlier
-    if (node == NULL) { // checks if the memory allocation succeeded
+    if (node == NULL) { // checks if the memory allocation failed
         printf("memory allocation failed");
         return; // nothing is returned as this is a void function
     }

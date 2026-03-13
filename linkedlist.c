@@ -111,6 +111,25 @@ void free_list(linkedlist *list) { //freeing up the memory of the linked list
     return;
 }
 
-int main() {
+int main() { // main function to test
+    linkedlist *list = create(); // create list
+    push_front(list, 7); // creates the first node and pushes 7 to it  list: 7
+    print(list); // prints output to check
+    printf("\n"); // prints space for ease of reading
+    push_front(list, 8); // push 8 to the front of the list  list: 8, 7
+    print(list);
+    printf("\n");
+    push_back(list, 9); // push 9 to the back of the list  list: 8, 7, 9
+    print(list);
+    printf("\n");
+    push_back(list, 1); // push 1 to the back of the list. list: 8, 7, 9, 1
+    print(list);
+    printf("\n");
+    printf("%d\n", get(list, 3)); // checks the list for integer value at position 3
+    printf("\n");
+    delete_node(list, 3); // deletes the node at position value 3 in the list. list: 8, 7, 9
+    print(list);
+    printf("\n");
+    free_list(list); // frees the memory of all the data in the list
     return 0;
 }

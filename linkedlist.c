@@ -54,8 +54,8 @@ void push_back(linkedlist *list, int value) { // function to push data to the ba
     return;
     }
 
-void delete_node(linkedlist *list, int position) {
-    if (list->head == NULL) {
+void delete_node(linkedlist *list, int position) { // going into the linkedlist and deleting a specified node
+    if (list->head == NULL) { // check is the list is empty first
         return;
     }
     Node *current = list->head; // declaring 'current' node pointer as a variable
@@ -74,23 +74,33 @@ void delete_node(linkedlist *list, int position) {
     free(delete); // frees the memory of the node to be deleted
 } // if the last pointer is re-assigned to NULL the list terminates, so we don't need to add this edge case separately to the function.
 
-int get(linkedlist *list, int position) {
-    if (list->head == NULL) {
-        return -1;
+int get(linkedlist *list, int position) { // get (in this case the integer data stored in a specified node)
+    if (list->head == NULL) { // check is the list is empty first
+        return -1; // -1 shows that an error has occured and needs to be there as I promised an interger return at the start
     }
-    Node *current = list->head;
-    int count = 0;
-    while (count < position) {
-        current = current->next;
-        count++;
-        if (current == NULL) {
-            return -1;
+    Node *current = list->head; // creating and assigning walk through node pointer
+    int count = 0; // declaring count
+    while (count < position) { // loop that walks the current pointer to the relevant node to be deleted
+        current = current->next; // walk through routine
+        count++; // increment count by +1
+        if (current == NULL) { // checks is the the list terminates before the specified position is reached by checking if the current pointer now points to NULL instead of the address of the next node
+            return -1; // -1 error indication for the required int return
         }
     }
-    return current->data;
+    return current->data; // returns the data in the specified node we asked for
 }
-// print()
-// free_list()
+void print(linkedlist *list) { // print the entire list
+    if (list->head == NULL) { // check if the list is empty
+        return;
+    }
+    Node *current = list->head;
+    while (current != NULL) { // run this loop as long as the current node pointer isn't pointing at NULL, so the end of the list
+        printf("%d\n", current->data); // print the date in the current node
+        current = current->next; // walk the current pointer down one node
+    }
+    return; // since this is a void function, no return is specified
+}
+void free_list(linkedlist *list)
 int main() {
     return 0;
 }

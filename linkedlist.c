@@ -66,14 +66,29 @@ void delete_node(linkedlist *list, int position) {
     }
     int count = 0; // declaring count here befoe the loop
     while (count < position -1) { // condition continues as long as the statement is true, so it stops the first time its false, unliek in math when you would put the correct number from one postion before
+        current = current->next; // walk down the list by switching the current pointer to the pointer of the next node
+        count++; // increments count by +1
+    }
+    Node *delete = current->next; // assigns another pointer to the point at the node to be deleted, we need to do this since we need 'current' to be assigned to the node after the deletion node
+    current->next = delete->next; // reassings the pointer to fromt eh node to be deleted to the node after the to be deleted node
+    free(delete); // frees the memory of the node to be deleted
+} // if the last pointer is re-assigned to NULL the list terminates, so we don't need to add this edge case separately to the function.
+
+int get(linkedlist *list, int position) {
+    if (list->head == NULL) {
+        return -1;
+    }
+    Node *current = list->head;
+    int count = 0;
+    while (count < position) {
         current = current->next;
         count++;
+        if (current == NULL) {
+            return -1;
+        }
     }
-    Node *delete = current->next;
-    current->next = delete->next;
-    free(delete);
+    return current->data;
 }
-// get()
 // print()
 // free_list()
 int main() {

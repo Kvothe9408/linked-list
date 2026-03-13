@@ -100,7 +100,17 @@ void print(linkedlist *list) { // print the entire list
     }
     return; // since this is a void function, no return is specified
 }
-void free_list(linkedlist *list)
+void free_list(linkedlist *list) { //freeing up the memory of the linked list
+    Node *current = list->head; // assigns a variable to the list->head pointer
+    while (current != NULL) { // a loop that runs while current doesn't point at NULL
+        Node *delete = current; // creates a temp value for in the loop for the node that will be deleted
+        current = current->next; // moves current forward one each step
+        free(delete); // do not need to increment delete, as it will always create a new version of it as the loop runs, frees the memory of that node
+    }
+    free(list); // frees the memory of the list
+    return;
+}
+
 int main() {
     return 0;
 }
